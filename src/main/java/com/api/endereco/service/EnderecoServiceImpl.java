@@ -35,7 +35,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 		if (endereco.isPresent()) {
 			return endereco.get();
 		} else {
-			throw new NoSuchElementException("Endereço não encontrado");
+			throw new RuntimeException("Endereço não encontrado");
 		}	
 	}
 
@@ -72,7 +72,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 		if (enderecoDB.isPresent()) {			
 			return enderecoRepository.save(endereco);
 		} else {
-			throw new RuntimeException("Endereço inexistente para atualização de dados, id:" + endereco.getId());
+			throw new RuntimeException("Endereço não encontrado para atualização de dados");
 		}		
 	}
 
@@ -84,7 +84,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 			this.enderecoRepository.delete(endereco.get());
 			return endereco.get();
 		} else {
-			throw new RuntimeException("Endereço inexistente para deletar, id:" + id);
+			throw new RuntimeException("Endereço não encontrado para deletar");
 		}		
 	}
 
