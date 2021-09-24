@@ -33,7 +33,7 @@ public class EnderecoControllerTest {
 	
 	@Test
 	public void enderecoTestGetAll() throws Exception {
-		mockMvc.perform(get("/endereco/getAll"))
+		mockMvc.perform(get("/endereco"))
 			.andExpect(status().isOk());
 	}
 	
@@ -52,7 +52,7 @@ public class EnderecoControllerTest {
 		endereco.setLatitude(null);
 		endereco.setLongitude(null);		
 		
-		mockMvc.perform(post("/endereco/insert")
+		mockMvc.perform(post("/endereco")
 			.contentType("application/json")
 			.content(objectMapper.writeValueAsString(endereco)))
 			.andExpect(status().isOk());
@@ -76,7 +76,7 @@ public class EnderecoControllerTest {
 		when(this.enderecoService.updateEndereco(endereco))
 			.thenReturn(endereco);
 		
-		mockMvc.perform(put("/endereco/update/{id}", 1)
+		mockMvc.perform(put("/endereco/{id}", 1)
 			.contentType("application/json")
 			.content(objectMapper.writeValueAsString(endereco)))
 			.andExpect(status().isOk());
@@ -84,8 +84,24 @@ public class EnderecoControllerTest {
 	
 	@Test
 	public void enderecoTestDeleteEndereco() throws Exception {
-		 mockMvc.perform(delete("/endereco/insert/{id}", 1))
-			.andExpect(status().isNotFound());
+		Endereco endereco = new Endereco();
+		
+		endereco.setStreetName("Rua Antonio Dias da Silva");
+		endereco.setNumber(231);
+		endereco.setNeighbourhood("Vila Amalia");
+		endereco.setCity("São Paulo");
+		endereco.setState("São Paulo");
+		endereco.setCountry("Brasil");
+		endereco.setZipcode("02618080");
+		endereco.setComplement("");
+		endereco.setLatitude(null);
+		endereco.setLongitude(null);
+		
+		when(this.enderecoService.deleteEndereco(1))
+			.thenReturn(endereco);
+		
+		mockMvc.perform(delete("/endereco/{id}", 1))
+			.andExpect(status().isOk());
 	}
 	
 }
