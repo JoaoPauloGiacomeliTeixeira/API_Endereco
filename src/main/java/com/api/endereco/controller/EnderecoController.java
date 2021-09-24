@@ -23,28 +23,28 @@ public class EnderecoController {
 	@Autowired
 	private EnderecoService enderecoService;
 	
-	@GetMapping("/getAll")
+	@GetMapping
 	public ResponseEntity<List<Endereco>> getAllendereco() {		
 		return ResponseEntity.ok().body(this.enderecoService.getAllEndereco());
 	}
 	
-	@GetMapping("/getById/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Endereco> getEnderecoById(@PathVariable long id) {
 		return ResponseEntity.ok().body(this.enderecoService.getEnderecoById(id));
 	}
 	
-	@PostMapping("/insert")	
+	@PostMapping
 	public ResponseEntity<Endereco> insertEndereco(@RequestBody Endereco endereco) {
 		return ResponseEntity.ok().body(this.enderecoService.insertEndereco(endereco));
 	}
 	
-	@PutMapping("/update/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Endereco> updateEndereco(@PathVariable long id, @RequestBody Endereco endereco) {
 		endereco.setId(id);
 		return ResponseEntity.ok().body(this.enderecoService.updateEndereco(endereco));
 	}
 		
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Endereco> deleteEndereco(@PathVariable long id) {		
 		return ResponseEntity.ok().body(this.enderecoService.deleteEndereco(id));
 	}
