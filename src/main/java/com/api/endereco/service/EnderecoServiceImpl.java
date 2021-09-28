@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.api.endereco.model.Endereco;
 import com.api.endereco.repository.EnderecoRepository;
@@ -16,7 +15,6 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
 
 @Service
-@Transactional
 public class EnderecoServiceImpl implements EnderecoService {
 
 	@Autowired
